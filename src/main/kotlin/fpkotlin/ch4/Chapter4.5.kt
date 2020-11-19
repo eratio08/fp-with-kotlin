@@ -1,4 +1,7 @@
-package fpkotlin
+package fpkotlin.ch4
+
+import fpkotlin.ch3.Cons
+import fpkotlin.ch3.List
 
 sealed class Either<out E, out A> {
     companion object

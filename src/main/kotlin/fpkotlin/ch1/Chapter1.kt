@@ -1,4 +1,4 @@
-package fpkotlin
+package fpkotlin.ch1
 
 import java.math.BigDecimal
 
@@ -30,7 +30,7 @@ data class Charge(val cc: CreditCard, val amount: Float) {
     operator fun plus(other: Charge): Charge = combine(other)
 }
 
-fun List<Charge>.coalesce(): kotlin.collections.List<Charge> =
+fun kotlin.collections.List<Charge>.coalesce(): kotlin.collections.List<Charge> =
         this.groupBy { it.cc }.values
                 .map { it.reduce { a, b -> a + b } }
 

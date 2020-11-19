@@ -1,15 +1,25 @@
-package fpkotlin
+package fpkotlin.ch4
 
+import fpkotlin.ch3.Cons
+import fpkotlin.ch3.List
+import fpkotlin.ch3.Nil
+import kotlin.math.abs
 import kotlin.math.pow
 
 sealed class Option<out A> {
+    abstract fun isEmpty(): Boolean
     companion object {
         fun <A> empty(): Option<A> = None
     }
 }
 
-data class Some<out A>(val get: A) : Option<A>()
-object None : Option<Nothing>()
+data class Some<out A>(val get: A) : Option<A>() {
+    override fun isEmpty(): Boolean = false
+}
+
+object None : Option<Nothing>() {
+    override fun isEmpty(): Boolean = true
+}
 
 // 4.1
 fun <A, B> Option<A>.map(f: (A) -> B): Option<B> =
@@ -60,7 +70,7 @@ fun <A, B> lift(f: (A) -> B): (Option<A>) -> Option<B> =
         { oa -> oa.map(f) }
 
 val absO: (Option<Double>) -> Option<Double> =
-        lift { kotlin.math.abs(it) }
+        lift { abs(it) }
 
 fun <A> catches(a: () -> A): Option<A> =
         try {

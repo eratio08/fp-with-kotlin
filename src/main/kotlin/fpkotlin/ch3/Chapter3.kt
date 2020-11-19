@@ -1,4 +1,4 @@
-package fpkotlin
+package fpkotlin.ch3
 
 
 sealed class List<out A> {

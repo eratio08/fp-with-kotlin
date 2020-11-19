@@ -1,4 +1,4 @@
-package fpkotlin
+package fpkotlin.ch2
 
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
@@ -51,10 +51,10 @@ object Example {
     }
 
     fun formatAbs(x: Int): String =
-            formatResult("absolut", x, ::abs)
+            formatResult("absolut", x, Example::abs)
 
     fun formatFactorial(x: Int): String =
-            formatResult("factorial", x, ::factorial)
+            formatResult("factorial", x, Example::factorial)
 
     private fun formatResult(name: String, n: Int, f: (Int) -> Int): String {
         val msg = "The %s of %d is %d"
@@ -95,7 +95,7 @@ object Exercise2 {
     val <T> kotlin.collections.List<T>.head: T
         get() = first()
 
-    fun <A> isSorted(aa: kotlin.collections.List<A>, order: (A, A) -> Boolean): Boolean {
+    fun <A> isSorted(aa: List<A>, order: (A, A) -> Boolean): Boolean {
         fun loop(aa: List<A>, sorted: Boolean): Boolean {
             val h = aa.head
             val t = aa.tail
